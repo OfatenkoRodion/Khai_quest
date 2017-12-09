@@ -8,27 +8,38 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import java.util.Objects;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import rx.subjects.AsyncSubject;
 
 public class BarcodeReader implements ZXingScannerView.ResultHandler
 {
     private static final int MY_PERMISSIONS_REQUESTS = 1;
     private ZXingScannerView mScannerView;
     private Context context;
-    private String result="";
     private Activity activity;
-    private boolean ready=false;
 
+    private AsyncSubject<String> text ;
+
+    public AsyncSubject<String> getText()
+    {
+        return text;
+    }
 
     public BarcodeReader(Context context, Activity activity)
     {
         this.context = context;
         this.activity = activity;
+        text = AsyncSubject.create();
+
     }
 
     public void startRead() throws InterruptedException
@@ -39,29 +50,17 @@ public class BarcodeReader implements ZXingScannerView.ResultHandler
             activity.setContentView(mScannerView);
             mScannerView.setResultHandler(this);
             mScannerView.startCamera();
-            ready=false;
         }
     }
 
     @Override
     public void handleResult(Result result)
     {
-        this.result=result.getText();
-        mScannerView.removeAllViews();  // очистили View
+        mScannerView.removeAllViews();
         mScannerView.stopCamera();
         activity.setContentView(R.layout.activity_main);
-        ready=true;
-
-    }
-
-    public String getText()
-    {
-        return result;
-    }
-
-    public boolean isReady()
-    {
-        return ready;
+        text.onNext(result.getText());
+        text.onCompleted();
     }
 
     public boolean checkPermissionOnCamera()
