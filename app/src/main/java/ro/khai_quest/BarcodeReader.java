@@ -56,9 +56,10 @@ public class BarcodeReader implements ZXingScannerView.ResultHandler
     @Override
     public void handleResult(Result result)
     {
+        //mScannerView.removeView(mScannerView);
         mScannerView.removeAllViews();
         mScannerView.stopCamera();
-        activity.setContentView(R.layout.activity_main);
+        //activity.setContentView(R.layout.activity_main2);
         text.onNext(result.getText());
         text.onCompleted();
     }

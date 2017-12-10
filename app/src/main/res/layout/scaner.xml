@@ -1,15 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.ScanerFragment">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="QRScanner" />
 
     <TextView
+        android:id="@+id/textViewRezult"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scaner"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>

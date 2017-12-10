@@ -39,6 +39,7 @@ public class MainActivity2 extends AppCompatActivity {
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         ScanerFragment scanerFragment=new ScanerFragment();
+        scanerFragment.setActivity(this);
 
         adapter.addFragment(scanerFragment, "Scaner");
         adapter.addFragment(new TwoFragment(), "TWO");
