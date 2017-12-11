@@ -12,19 +12,18 @@ import ro.khai_quest.BarcodeReader;
 import ro.khai_quest.R;
 
 
-public class ScanerFragment extends Fragment
+public class ScannerFragment extends Fragment
 {
 
-    private Activity activity;
-
-    public ScanerFragment()
+    public ScannerFragment()
     {
         // Required empty public constructor
     }
 
-    public void setActivity(Activity motherActivity)
+    private String result;
+    public void setResult(String result)
     {
-        this.activity = motherActivity;
+        this.result = result;
     }
 
     @Override
@@ -38,11 +37,9 @@ public class ScanerFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.scaner, container, false);
 
-        BarcodeReader br= new BarcodeReader(view.getContext(),activity);
-        br.getText().subscribe( v ->
-        {
-            ((TextView)(view.findViewById(R.id.textViewRezult))).setText(v);
-        });
+        ((TextView)(view.findViewById(R.id.textViewRezult))).setText(result);
+
+        BarcodeReader br= new BarcodeReader(view.getContext(),getActivity());
 
         view.findViewById(R.id.buttonStart).setOnClickListener(view1 ->
         {

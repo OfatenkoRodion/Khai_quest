@@ -7,19 +7,21 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import Fragments.ScanerFragment;
+import Fragments.ScannerFragment;
 import Fragments.ThreeFragment;
 import Fragments.TwoFragment;
 
 
-public class MainActivity2 extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity
+{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
@@ -38,10 +40,15 @@ public class MainActivity2 extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        ScanerFragment scanerFragment=new ScanerFragment();
-        scanerFragment.setActivity(this);
 
-        adapter.addFragment(scanerFragment, "Scaner");
+        ScannerFragment scanerFragment=new ScannerFragment();
+
+        if (getIntent()!=null)
+        {
+            scanerFragment.setResult(getIntent().getStringExtra("qr_code"));
+        }
+
+        adapter.addFragment(scanerFragment, "Scanner");
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThreeFragment(), "THREE");
         viewPager.setAdapter(adapter);
