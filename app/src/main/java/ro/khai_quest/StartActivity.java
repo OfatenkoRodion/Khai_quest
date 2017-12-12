@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import Fragments.ScannerFragment;
-import Fragments.ThreeFragment;
+import Fragments.QrCodesFragment;
 import Fragments.TwoFragment;
 
 
@@ -23,7 +23,7 @@ public class StartActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_start);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,7 +50,7 @@ public class StartActivity extends AppCompatActivity
 
         adapter.addFragment(scanerFragment, "Scanner");
         adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
+        adapter.addFragment(new QrCodesFragment(), "THREE");
         viewPager.setAdapter(adapter);
     }
 
