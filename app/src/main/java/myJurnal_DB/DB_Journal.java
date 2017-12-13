@@ -33,6 +33,14 @@ public class DB_Journal extends SQLiteOpenHelper
     {
 
     }
+    public void loadData()
+    {
+        insert(0,0,"hello",1,false);
+        insert(0,0,"hello2",2,false);
+        insert(0,0,"hello3",3,false);
+        insert(0,0,"hello4",4,false);
+        insert(0,0,"hello5",5,false);
+    }
     private void insert(final int x,final int y, String message, int password, boolean isOpen)
     {
         ContentValues contentValues = new ContentValues();
@@ -71,5 +79,7 @@ public class DB_Journal extends SQLiteOpenHelper
         }
         return qrCodes;
     }
+
+
 
 }

@@ -39,6 +39,6 @@ public class QrCodeRecyclerAdapter extends RecyclerView.Adapter<QrCodeRecyclerVi
     @Override
     public int getItemCount()
     {
-        return 0;
+        return myQrCodes.size();
     }
 }

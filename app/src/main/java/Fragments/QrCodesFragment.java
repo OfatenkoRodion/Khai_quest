@@ -27,27 +27,22 @@ public class QrCodesFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        adapter = new QrCodeRecyclerAdapter();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        adapter = new QrCodeRecyclerAdapter();
         View view = inflater.inflate(R.layout.fragment_qr_codes, container, false);
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerViewQrCodes);
         recyclerView.setAdapter(adapter);
 
-        try
-        {
-            DB_Journal db_journal= new DB_Journal(view.getContext());
-            adapter.addAll(db_journal.getListQrCodes());
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(view.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
-        }
 
+        DB_Journal db_journal = new DB_Journal(getActivity().getApplicationContext());
+        db_journal.loadData();
+
+        adapter.addAll(db_journal.getListQrCodes());
 
         return view;
     }
