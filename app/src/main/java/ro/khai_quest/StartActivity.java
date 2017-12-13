@@ -50,7 +50,7 @@ public class StartActivity extends AppCompatActivity
 
         adapter.addFragment(scanerFragment, "Scanner");
         adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new QrCodesFragment(), "THREE");
+        adapter.addFragment(new QrCodesFragment(), "Journal");
         viewPager.setAdapter(adapter);
     }
 

@@ -7,12 +7,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import RecyclerViews.QrCodeRecyclerAdapter;
+import myJurnal_DB.DB_Journal;
 import ro.khai_quest.R;
 
 
 public class QrCodesFragment extends Fragment
 {
+    private QrCodeRecyclerAdapter adapter;
 
     public QrCodesFragment()
     {
@@ -23,6 +27,7 @@ public class QrCodesFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        adapter = new QrCodeRecyclerAdapter();
     }
 
     @Override
@@ -31,6 +36,17 @@ public class QrCodesFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_qr_codes, container, false);
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recyclerViewQrCodes);
+        recyclerView.setAdapter(adapter);
+
+        try
+        {
+            DB_Journal db_journal= new DB_Journal(view.getContext());
+            adapter.addAll(db_journal.getListQrCodes());
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(view.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
 
 
         return view;
