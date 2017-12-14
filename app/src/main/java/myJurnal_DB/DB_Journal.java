@@ -25,7 +25,7 @@ public class DB_Journal extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-        sqLiteDatabase.execSQL("CREATE table Journal(id integer PRIMARY KEY autoincrement, x integer NOT NULL, y integer NOT NULL, message text NOT NULL, password  integer NOT NULL, isOpen  integer NOT NULL,UNIQUE(password));");
+        sqLiteDatabase.execSQL("CREATE table QrCodePoint(id integer PRIMARY KEY autoincrement, x integer NOT NULL, y integer NOT NULL, message text NOT NULL, password  integer NOT NULL, isOpen  integer NOT NULL,UNIQUE(password));");
     }
 
     @Override
@@ -51,13 +51,13 @@ public class DB_Journal extends SQLiteOpenHelper
         if (isOpen)
         contentValues.put("isOpen",1);
         else contentValues.put("isOpen",0);
-        this.getWritableDatabase().insert("Journal",null,contentValues);
+        this.getWritableDatabase().insert("QrCodePoint",null,contentValues);
     }
     public ArrayList<MyQrCode> getListQrCodes()
     {
         ArrayList<MyQrCode> qrCodes = new ArrayList<MyQrCode>();
 
-        Cursor cursor = this.getWritableDatabase().query("Journal", null, null, null, null, null, null);
+        Cursor cursor = this.getWritableDatabase().query("QrCodePoint", null, null, null, null, null, null);
         if (cursor.moveToFirst())
         {
             do {

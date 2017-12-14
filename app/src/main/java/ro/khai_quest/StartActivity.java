@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import Fragments.ScannerFragment;
 import Fragments.QrCodesFragment;
-import Fragments.TwoFragment;
+import Fragments.MessageFragment;
 
 
 public class StartActivity extends AppCompatActivity
@@ -48,9 +48,9 @@ public class StartActivity extends AppCompatActivity
             scanerFragment.setResult(getIntent().getStringExtra("qr_code"));
         }
 
-        adapter.addFragment(scanerFragment, "Scanner");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new QrCodesFragment(), "Journal");
+        adapter.addFragment(scanerFragment, "Сканер");
+        adapter.addFragment(new MessageFragment(), "Задания");
+        adapter.addFragment(new QrCodesFragment(), "Журнал");
         viewPager.setAdapter(adapter);
     }
 

@@ -19,6 +19,6 @@ public class QrCodeRecyclerViewHolder extends RecyclerView.ViewHolder
 
     public void bind (MyQrCode myQrCode)
     {
-        textView.setText("id:"+myQrCode.getId());
+        textView.setText("id:"+myQrCode.getId()+" Message:"+myQrCode.getMessage()+" Password"+myQrCode.getPassword());
     }
 }
