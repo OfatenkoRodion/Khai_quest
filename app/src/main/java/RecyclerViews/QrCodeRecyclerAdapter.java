@@ -1,5 +1,6 @@
 package RecyclerViews;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,10 @@ public class QrCodeRecyclerAdapter extends RecyclerView.Adapter<QrCodeRecyclerVi
 {
 
     private ArrayList<MyQrCode> myQrCodes = new ArrayList<>();
-
-    public void addAll(ArrayList<MyQrCode> newQrCodes)
+    private Context context;
+    public void addAll(ArrayList<MyQrCode> newQrCodes, Context context)
     {
+        this.context=context;
         myQrCodes.clear();
         int pos = getItemCount();
         this.myQrCodes.addAll(newQrCodes);
