@@ -26,6 +26,8 @@ public class DB_Journal extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
         sqLiteDatabase.execSQL("CREATE table QrCodePoint(id integer PRIMARY KEY autoincrement, x integer NOT NULL, y integer NOT NULL, message text NOT NULL, password  integer NOT NULL, isOpen  integer NOT NULL,UNIQUE(password));");
+        //true 1
+        // false 0
     }
 
     @Override
@@ -80,6 +82,9 @@ public class DB_Journal extends SQLiteOpenHelper
         return qrCodes;
     }
 
-
+    public void openQrCode(int password)
+    {
+        this.getWritableDatabase().execSQL("UPDATE QrCodePoint SET isOpen=1 WHERE password='"+password+"' ");
+    }
 
 }

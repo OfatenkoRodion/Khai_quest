@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import myJurnal_DB.DB_Journal;
 import ro.khai_quest.BarcodeReader;
 import ro.khai_quest.R;
 
@@ -35,7 +39,23 @@ public class ScannerFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_start_scaner, container, false);
 
-        ((TextView)(view.findViewById(R.id.textViewRezult))).setText(result);
+        if (result!=null)
+        {
+            Date dateNow = new Date();
+            SimpleDateFormat formatForDateNow = new SimpleDateFormat("HH:mm:ss");
+            ((TextView)(view.findViewById(R.id.textViewRezult))).setText(formatForDateNow.format(dateNow) +" считано:"+result);
+
+            DB_Journal db_journal = new DB_Journal(getActivity().getApplicationContext());
+            try
+            {
+                db_journal.openQrCode(Integer.parseInt(result));
+            }
+            catch (NumberFormatException e)
+            {
+                ((TextView)(view.findViewById(R.id.textViewRezult))).setText("Считывайте только коды участвующие в игре, результат считывания :\r\n" +
+                        formatForDateNow.format(dateNow) +" "+result);
+            }
+        }
 
         BarcodeReader br= new BarcodeReader(view.getContext(),getActivity());
 
