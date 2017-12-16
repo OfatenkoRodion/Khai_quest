@@ -7,10 +7,10 @@ public class MyQrCode
     private int x;
     private int y;
     private String message;
-    private int password;
+    private String password;
     private boolean isOpen;
 
-    public MyQrCode(int id,int x, int y, String message, int password, boolean isOpen)
+    public MyQrCode(int id,int x, int y, String message, String password, boolean isOpen)
     {
         this.id = new LazyImmutableInt();
         this.id.setValue(id);
@@ -26,7 +26,7 @@ public class MyQrCode
         x=0;
         y=0;
         message = new String();
-        password=0;
+        password=new String();
         isOpen=false;
     }
 
@@ -65,12 +65,12 @@ public class MyQrCode
         this.message = message;
     }
 
-    public int getPassword()
+    public String getPassword()
     {
         return password;
     }
 
-    public void setPassword(int password)
+    public void setPassword(String password)
     {
         this.password = password;
     }

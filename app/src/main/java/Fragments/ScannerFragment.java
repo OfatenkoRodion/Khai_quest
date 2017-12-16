@@ -46,15 +46,8 @@ public class ScannerFragment extends Fragment
             ((TextView)(view.findViewById(R.id.textViewRezult))).setText(formatForDateNow.format(dateNow) +" считано:"+result);
 
             DB_Journal db_journal = new DB_Journal(getActivity().getApplicationContext());
-            try
-            {
-                db_journal.openQrCode(Integer.parseInt(result));
-            }
-            catch (NumberFormatException e)
-            {
-                ((TextView)(view.findViewById(R.id.textViewRezult))).setText("Считывайте только коды участвующие в игре, результат считывания :\r\n" +
-                        formatForDateNow.format(dateNow) +" "+result);
-            }
+            db_journal.openQrCode(result);
+
         }
 
         BarcodeReader br= new BarcodeReader(view.getContext(),getActivity());
